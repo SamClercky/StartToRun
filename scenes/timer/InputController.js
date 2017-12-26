@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, View, Text } from "react-native";
 import { Input } from "./Input.js";
 import Swipeout from "react-native-swipeout";
 
@@ -48,11 +48,16 @@ export class InputController extends React.Component {
 
   render() {
     return (
-      <FlatList
-        style={this.props.style}
-        data={this.props.listOfInput}
-        renderItem={this.renderRow}
-        extraData={this.props} />
+      <View style={this.props.style}>
+        <Text>
+          {(this.props.listOfInput.length == 0) ? "Voeg een nieuw veld toe door onderaan op het + teken te klikken" : ""}
+        </Text>
+        <FlatList
+          style={this.props.style}
+          data={this.props.listOfInput}
+          renderItem={this.renderRow}
+          extraData={this.props} />
+      </View>
     );
   }
 }

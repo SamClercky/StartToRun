@@ -102,6 +102,7 @@ export class Header extends React.Component {
   getNewTime(m, s) {
     //console.log({m: m, s: s});
     if (s <= 0) {
+      s = 59;
       if (m <= 0) {
         console.log("false returned");
         return false;

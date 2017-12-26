@@ -101,7 +101,9 @@ export class HomeScreen extends React.Component {
           style={styles.controller}
           onAdd={this.onAdd}
           onPauze={this.onPauze}
-          onStop={this.onStop} />
+          onStop={this.onStop}
+          reset={this.state.reset}
+          pauze={this.state.pauze}/>
       </View>
     )
   }

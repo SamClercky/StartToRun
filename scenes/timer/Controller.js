@@ -1,12 +1,8 @@
 import React from "react";
-import {Button, View} from "react-native";
+import {TouchableHighlight, View, Text, StyleSheet} from "react-native";
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 export class Controller extends React.Component {
-  static status = {
-    play: 0,
-    pauze: 1
-  }
-
   constructor(props) {
     super(props);
 
@@ -30,10 +26,39 @@ export class Controller extends React.Component {
   render() {
     return (
       <View style={this.props.style}>
-        <Button title="+" onPress={this.onAdd} />
-        <Button title="Play" onPress={this.onPauze} />
-        <Button title="Stop" onPress={this.onStop} />
+        <TouchableHighlight style={styles.lftTouchable} onPress={this.onAdd}>
+          <Text style={styles.lftButton}>
+            <FontAwesome>{Icons.plus}</FontAwesome>
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={this.onPauze}>
+          <Text>
+            <FontAwesome>
+              {
+                this.props.pauze ? Icons.play : Icons.pause
+              }
+            </FontAwesome>
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={this.onStop}>
+          <Text>
+            <FontAwesome>{Icons.stop}</FontAwesome>
+          </Text>
+        </TouchableHighlight>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  lftButton: {
+    color: "white",
+    height: "50%",
+    backgroundColor: "blue",
+    width: "100%",
+  },
+  lftTouchable: {
+    width: "50%",
+    height: "100%"
+  }
+});
