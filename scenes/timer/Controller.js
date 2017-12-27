@@ -26,8 +26,8 @@ export class Controller extends React.Component {
   render() {
     return (
       <View style={this.props.style}>
-        <TouchableHighlight style={styles.touchable} onPress={this.onAdd}>
-          <Text style={[styles.zijButtonText, styles.buttonText]}>
+        <TouchableHighlight style={styles.touchable} onPress={this.onAdd} disabled={!this.props.pauze}>
+          <Text style={[styles.buttonText, (!this.props.pauze) ? styles.zijButtonTextDisabled : styles.zijButtonText]}>
             <FontAwesome>{Icons.plus}</FontAwesome>
           </Text>
         </TouchableHighlight>
@@ -41,7 +41,7 @@ export class Controller extends React.Component {
           </Text>
         </TouchableHighlight>
         <TouchableHighlight style={styles.touchable} onPress={this.onStop}>
-          <Text style={[styles.zijButtonText, styles.buttonText]}>
+          <Text style={[styles.buttonText, styles.zijButtonText]}>
             <FontAwesome>{Icons.stop}</FontAwesome>
           </Text>
         </TouchableHighlight>
@@ -64,6 +64,10 @@ const styles = StyleSheet.create({
     fontSize: 32
   },
   zijButtonText: {
+    backgroundColor: "white",
+    color: "#333"
+  },
+  zijButtonTextDisabled: {
     backgroundColor: "white",
     color: "#aaa"
   },

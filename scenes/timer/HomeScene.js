@@ -76,7 +76,7 @@ export class HomeScreen extends React.Component {
   }
 
   onCounterStopped() {
-    this.setState({pauze: true});
+    this.onStop();
   }
 
   render() {

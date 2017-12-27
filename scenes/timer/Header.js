@@ -1,5 +1,6 @@
 import React from "react";
 import {Text, View, StyleSheet} from "react-native";
+import {SoundGenerator} from "../extra/SoundGenerator.js";
 
 export class Header extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ export class Header extends React.Component {
     this.onTick = this.onTick.bind(this);
     this.onStop = this.onStop.bind(this);
     this.resetAll = this.resetAll.bind(this);
+
+    this.SoundGenerator = null;
   }
 
   componentDidMount() {
@@ -29,8 +32,13 @@ export class Header extends React.Component {
       if (this.state.timer != null) {
         clearInterval(this.state.timer);
       }
+      if (this.SoundGenerator != null) {
+        this.SoundGenerator.relaese();
+        this.SoundGenerator = null;
+      }
     } else {
       // start interval 1s
+      this.SoundGenerator = new SoundGenerator("beep1.mp3");
       const timer = setInterval(this.onTick, 1000);
       if (this.props.listOfInput === nextProps.listOfInput) {
         this.setState({timer: timer});
@@ -61,8 +69,9 @@ export class Header extends React.Component {
     let counter = this.state.counter;
 
     if (newTime == false) {
+      if (this.SoundGenerator != null) this.SoundGenerator.play();
+
       if (this.state.counter < this.props.listOfInput.length) {
-        //console.log(parseInt(this.props.listOfInput[this.state.counter].value));
         newTime = {};
         newTime.m = parseInt(this.props.listOfInput[this.state.counter].value);
         newTime.s = 0;
