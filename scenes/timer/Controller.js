@@ -26,13 +26,13 @@ export class Controller extends React.Component {
   render() {
     return (
       <View style={this.props.style}>
-        <TouchableHighlight style={styles.lftTouchable} onPress={this.onAdd}>
-          <Text style={styles.lftButton}>
+        <TouchableHighlight style={styles.touchable} onPress={this.onAdd}>
+          <Text style={[styles.zijButtonText, styles.buttonText]}>
             <FontAwesome>{Icons.plus}</FontAwesome>
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.onPauze}>
-          <Text>
+        <TouchableHighlight style={styles.touchable} onPress={this.onPauze}>
+          <Text style={[styles.hftButtonText, styles.buttonText]}>
             <FontAwesome>
               {
                 this.props.pauze ? Icons.play : Icons.pause
@@ -40,8 +40,8 @@ export class Controller extends React.Component {
             </FontAwesome>
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.onStop}>
-          <Text>
+        <TouchableHighlight style={styles.touchable} onPress={this.onStop}>
+          <Text style={[styles.zijButtonText, styles.buttonText]}>
             <FontAwesome>{Icons.stop}</FontAwesome>
           </Text>
         </TouchableHighlight>
@@ -51,14 +51,25 @@ export class Controller extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  lftButton: {
-    color: "white",
-    height: "50%",
-    backgroundColor: "blue",
-    width: "100%",
-  },
-  lftTouchable: {
-    width: "50%",
+  touchable: {
+    flexDirection: "row",
+    flex: 1,
     height: "100%"
+  },
+  buttonText: {
+    width: "100%",
+    height: "100%",
+    textAlign: "center",
+    textAlignVertical: "center",
+    fontSize: 32
+  },
+  zijButtonText: {
+    backgroundColor: "white",
+    color: "#aaa"
+  },
+  hftButtonText: {
+    backgroundColor: "#aaf",
+    color: "white",
+    borderRadius: 100
   }
 });
